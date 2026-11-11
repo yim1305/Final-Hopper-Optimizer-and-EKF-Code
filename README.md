@@ -98,4 +98,3 @@ A saved flight records SHA-256 hashes (cryptographic fingerprints of file conten
 | Understand or rerun the trajectory optimizer, its assumptions and its recorded results | [Astro/README.md](Astro/README.md) |
 | Understand or rerun the navigation study | [GN/README.md](GN/README.md) |
 | Render the flight animations | [Animation/README.md](Animation/README.md) |
-| Know the rules for editing or publishing | `AGENTS.md` |
