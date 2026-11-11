@@ -1,0 +1,29 @@
+.venv/
+.pytest_cache/
+__pycache__/
+*.py[cod]
+
+# Local editor and maintenance state
+.vscode/
+.maintenance/
+
+# Presentations and browser/build artifacts never belong here.
+**/presentations/
+*.ppt
+*.pptx
+**/headless-*profile*/
+
+# Bundled raster runtime is replaced by the rasterio line in requirements.txt.
+Astro/data/runtime/
+
+# Generated results stay local. Only the optimizer restart arrays of the
+# accepted cases are tracked, because run_case has no cold start.
+GN/results/
+Animation/results/
+Astro/results/*
+!Astro/results/a2200_08/
+!Astro/results/a2200_12/
+Astro/results/a2200_08/*
+Astro/results/a2200_12/*
+!Astro/results/a2200_*/sizing.npz
+!Astro/results/a2200_*/duals.npz

@@ -1,0 +1,30 @@
+{
+  "url": "https://pgda.gsfc.nasa.gov/data/LOLA_20mpp/LDEM_75S_30MPP_ADJ.TIF",
+  "source_page": "https://pgda.gsfc.nasa.gov/products/90",
+  "citation": "Barker et al. (2023), Planetary Science Journal 4, 183; doi:10.3847/PSJ/acf3e1",
+  "coordinate_frame": "MOON_ME, DE421",
+  "elevation_reference_radius_m": 1737400.0,
+  "pixel_spacing_m": 30,
+  "source_profile": {
+    "driver": "GTiff",
+    "dtype": "float32",
+    "nodata": "nan",
+    "width": "30496",
+    "height": "30496",
+    "count": "1",
+    "crs": "PROJCS[\"Moon (2015) - Sphere / Ocentric / South Polar\",GEOGCS[\"Moon (2015) - Sphere / Ocentric\",DATUM[\"Moon (2015) - Sphere\",SPHEROID[\"Moon (2015) - Sphere\",1737400,0,AUTHORITY[\"IAU\",\"30100\"]],AUTHORITY[\"IAU\",\"30100\"]],PRIMEM[\"Reference Meridian\",0,AUTHORITY[\"IAU\",\"30100\"]],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]],AUTHORITY[\"IAU\",\"30100\"]],PROJECTION[\"Polar_Stereographic\"],PARAMETER[\"latitude_of_origin\",-90],PARAMETER[\"central_meridian\",0],PARAMETER[\"false_easting\",0],PARAMETER[\"false_northing\",0],UNIT[\"metre\",1,AUTHORITY[\"EPSG\",\"9001\"]],AXIS[\"Easting\",NORTH],AXIS[\"Northing\",NORTH],AUTHORITY[\"IAU\",\"30135\"]]",
+    "transform": "| 30.00, 0.00,-457440.00|\n| 0.00,-30.00, 457440.00|\n| 0.00, 0.00, 1.00|",
+    "blockxsize": "512",
+    "blockysize": "512",
+    "tiled": "True",
+    "compress": "deflate",
+    "interleave": "band"
+  },
+  "window": {
+    "col_off": 3678.0,
+    "row_off": 14345.0,
+    "width": 7360.0,
+    "height": 1008.0
+  },
+  "local_sha256": "2682f803775f9cec4a8ac8bedafcb466af9164983a31a3f7274e3366d8d63c90"
+}

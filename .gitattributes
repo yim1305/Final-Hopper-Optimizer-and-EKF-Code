@@ -1,2 +1,4 @@
-# Auto detect text files and perform LF normalization
-* text=auto
+# Keep every file byte-for-byte. Saved flights record SHA-256 hashes of the
+# Astro sources, configs and terrain files, so line-ending conversion would
+# invalidate them.
+* -text

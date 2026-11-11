@@ -1,0 +1,63 @@
+# G&N navigation simulation settings (human units; converted to SI in gn_sim/config.py).
+# Values marked PLACEHOLDER are assumptions, not supplied hardware data. Sigma level of supplied
+# specs was not stated; all are treated as 1-sigma (conservative if the vendor meant 3-sigma).
+
+trajectory:
+  case_dir: Astro/results/a2200_08   # validated 8-A2200 / 2000 kg dry DEM flight
+  case_id: a2200_08
+  branch: uprange
+
+outputs:
+  directory: GN/results/dem_a2200_08  # keep prior numerical studies intact
+
+timing:
+  nav_rate_hz: 16.0                 # filter step; 400 Hz IMU data are summed onboard to this rate
+  descent_checkpoint_alt_m: 1000.0  # reported checkpoint on descent (possible SPLICE handoff point)
+  store_rate_hz: 2.0                # time-history sampling for plots
+
+imu:                                # LN-200S (one unit used by the filter; second unit is a spare)
+  rate_hz: 400.0                    # user spec
+  gyro_bias_deg_hr: 1.0             # NovAtel LN-200 listing, bias repeatability
+  gyro_arw_deg_rthr: 0.07           # NovAtel LN-200 listing
+  accel_bias_mg: 0.3                # NovAtel LN-200 listing, bias repeatability
+  accel_vrw_m_s_rthr: 0.03          # PLACEHOLDER: not published in the available listing
+  gyro_range_deg_s: 1000.0          # user spec
+  accel_range_g: 40.0               # user spec
+
+star_tracker:                       # two heads; geometry and mounts from the optimizer case
+  rate_hz: 16.0                     # user spec, per head
+  sigma_cross_arcsec: 0.8           # user spec (x-y)
+  sigma_roll_arcsec: 7.0            # user spec (z, about boresight)
+  max_body_rate_deg_s: 6.0          # user spec "dynamic and glare"; the same 6 deg/s that Astro enforces (mission.yaml tracking_body_rate_max_deg_s)
+
+trn:                                # SPLICE TRN position data (hopper has no TRN camera of its own)
+  sigma_m: 50.0                     # PLACEHOLDER, 1-sigma per axis; swept in run_trn_sweep
+  rate_hz: 0.2                      # PLACEHOLDER; swept in run_trn_sweep
+  altitude_band_m: [0.0, .inf]      # team checked SPLICE TRN tracks at high altitude: whole flight
+
+initial:                            # user decision: perfect initial position on both hops
+  position_sigma_m: 0.001           # "perfect" (tiny value for numerical health)
+  velocity_sigma_m_s: 0.001         # at rest on the surface
+  attitude_from: star_tracker_head_1  # initial attitude error = star tracker accuracy
+
+montecarlo:
+  runs: 100
+  seed: 20261025
+
+cases:
+  A:  {label: "IMU only (dead reckoning)",          trackers: [],     trn: false}
+  B:  {label: "INS: IMU + 2 star trackers",         trackers: [0, 1], trn: false}
+  C:  {label: "IMU + 2 star trackers + SPLICE TRN", trackers: [0, 1], trn: true}
+  D1: {label: "IMU + head 1 only + SPLICE TRN",     trackers: [0],    trn: true}
+  D2: {label: "IMU + head 2 only + SPLICE TRN",     trackers: [1],    trn: true}
+  E:  {label: "IMU + SPLICE TRN, no star trackers",  trackers: [],     trn: true}   # value of the trackers in flight
+
+sweep:                              # derived requirement on SPLICE TRN data (case C settings)
+  trn_sigma_m: [10.0, 30.0, 100.0, 300.0]
+  trn_rate_hz: [0.05, 0.1, 0.2, 1.0]
+  runs: 50
+
+requirements:
+  landing_horizontal_3sigma_m: 50.0   # mission landing requirement (README); nav knowledge, horizontal RSS
+  touchdown_vertical_speed_m_s: 1.5   # trajectory touchdown limit, for reference
+  touchdown_horizontal_speed_m_s: 0.5 # current trajectory touchdown limit, for reference

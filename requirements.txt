@@ -1,0 +1,9 @@
+# Versions the recorded results were produced with (Python 3.14).
+casadi==3.8.1
+numpy==2.5.4
+scipy==1.18.1
+matplotlib==3.11.2
+PyYAML==6.0.3
+rasterio==1.5.2
+pytest==9.1.1
+imageio-ffmpeg==0.7.0
